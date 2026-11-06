@@ -6,7 +6,13 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint"
+        "typecheck": "next typegen && tsc --noEmit",
+        "lint": "eslint . --max-warnings 0",
+        "format": "prettier --write .",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "bundle:check": "node scripts/check-bundle.mjs",
+        "check": "pnpm typecheck && pnpm lint && pnpm test"
     },
     "dependencies": {
         "@base-ui/react": "^1.9.0",
