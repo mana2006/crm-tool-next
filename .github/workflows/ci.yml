@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      API_BACKEND_URL: http://localhost:3001/api
+      API_BACKEND_URL: http://localhost:8001/api
       NEXT_TELEMETRY_DISABLED: 1
     steps:
       - uses: actions/checkout@v6
