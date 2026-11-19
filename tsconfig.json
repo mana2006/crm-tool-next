@@ -1,32 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    "target": "ES2017", // cú pháp JS dùng khi kiểm tra; Next tự lo việc build
+    "lib": ["dom", "dom.iterable", "esnext"], // được dùng API trình duyệt (window, document) và JS mới
+    "allowJs": true, // cho phép trộn file .js
+    "skipLibCheck": true, // không kiểm tra kiểu bên trong node_modules, cho nhanh
+    "strict": true, // bật mọi kiểm tra nghiêm ngặt, như PHPStan level cao. Không tắt.
+    "noEmit": true, // tsc chỉ kiểm tra, không sinh file; Turbopack mới là bên build
+    "esModuleInterop": true, // import được thư viện kiểu cũ (CommonJS) bằng `import x from "y"`
     "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "moduleResolution": "bundler", // tìm file import theo cách của bộ build
+    "resolveJsonModule": true, // import được file .json
+    "isolatedModules": true, // mỗi file phải tự biên dịch được, yêu cầu của bộ build
+    "jsx": "react-jsx", // cách hiểu cú pháp <Button />
+    "incremental": true, // nhớ kết quả lần trước vào tsconfig.tsbuildinfo, lần sau nhanh hơn
+    "plugins": [{ "name": "next" }], // VS Code cảnh báo dùng sai API của Next ngay khi gõ
+    "paths": { "@/*": ["./src/*"] } // alias: @/shared/ui/button = src/shared/ui/button, như alias "@" trong Vite
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
+    ".next/types/**/*.ts", // kiểu Next tự sinh (PageProps, LayoutProps); vì vậy typecheck chạy next typegen trước
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
